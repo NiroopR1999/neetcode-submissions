@@ -1,0 +1,24 @@
+func firstMissingPositive(nums []int) int {
+
+	l := len(nums)
+
+	for i := 0; i < l; i++ {
+
+		for nums[i] > 0 && nums[i] <= l && nums[nums[i]-1] != nums[i] {
+
+			nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]
+
+		}
+	}
+
+	for i := range nums {
+
+		if nums[i] != i+1 {
+
+			return i + 1
+
+		}
+	}
+
+	return l + 1
+}
